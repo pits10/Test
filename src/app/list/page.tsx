@@ -18,14 +18,14 @@ export default function ListPage() {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
+    const loadData = async () => {
+      const repo = getRepository();
+      const data = await repo.list(filter, sort);
+      setPlaces(data);
+    };
+
     loadData();
   }, [filter, sort]);
-
-  const loadData = async () => {
-    const repo = getRepository();
-    const data = await repo.list(filter, sort);
-    setPlaces(data);
-  };
 
   const handleSearch = () => {
     setFilter({ ...filter, searchText });

@@ -14,17 +14,17 @@ export default function Dashboard() {
   const [genres, setGenres] = useState<string[]>([]);
 
   useEffect(() => {
+    const loadData = async () => {
+      const repo = getRepository();
+      const data = await repo.list(filter);
+      setPlaces(data);
+
+      const suggestions = await repo.getSuggestions();
+      setStations(suggestions.stations);
+    };
+
     loadData();
   }, [filter]);
-
-  const loadData = async () => {
-    const repo = getRepository();
-    const data = await repo.list(filter);
-    setPlaces(data);
-
-    const suggestions = await repo.getSuggestions();
-    setStations(suggestions.stations);
-  };
 
   useEffect(() => {
     const uniqueGenres = Array.from(new Set(places.map((p) => p.genre))).filter(Boolean);
