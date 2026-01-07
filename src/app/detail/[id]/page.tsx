@@ -19,15 +19,15 @@ export default function DetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const loadPlace = async () => {
+      const repo = getRepository();
+      const data = await repo.get(id);
+      setPlace(data);
+      setLoading(false);
+    };
+
     loadPlace();
   }, [id]);
-
-  const loadPlace = async () => {
-    const repo = getRepository();
-    const data = await repo.get(id);
-    setPlace(data);
-    setLoading(false);
-  };
 
   const handleDelete = async () => {
     if (!confirm("本当に削除しますか？")) return;
