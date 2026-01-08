@@ -72,14 +72,14 @@ export default function ListPage() {
         <div>
           <label className="text-sm font-medium">タイプ</label>
           <Select
-            value={filter.type || ""}
-            onValueChange={(value: any) => setFilter({ ...filter, type: value || undefined })}
+            value={filter.type || "all"}
+            onValueChange={(value: any) => setFilter({ ...filter, type: value === "all" ? undefined : value })}
           >
             <SelectTrigger>
               <SelectValue placeholder="すべて" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">すべて</SelectItem>
+              <SelectItem value="all">すべて</SelectItem>
               <SelectItem value="hotel">ホテル</SelectItem>
               <SelectItem value="venue">店舗</SelectItem>
             </SelectContent>

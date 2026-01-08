@@ -116,16 +116,16 @@ export default function Dashboard() {
             <div>
               <label className="text-sm font-medium">駅</label>
               <Select
-                value={filter.nearestStation || ""}
+                value={filter.nearestStation || "all"}
                 onValueChange={(value) =>
-                  setFilter({ ...filter, nearestStation: value || undefined })
+                  setFilter({ ...filter, nearestStation: value === "all" ? undefined : value })
                 }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="すべて" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">すべて</SelectItem>
+                  <SelectItem value="all">すべて</SelectItem>
                   {stations.map((station) => (
                     <SelectItem key={station} value={station}>
                       {station}
@@ -138,14 +138,14 @@ export default function Dashboard() {
             <div>
               <label className="text-sm font-medium">ジャンル</label>
               <Select
-                value={filter.genre || ""}
-                onValueChange={(value) => setFilter({ ...filter, genre: value || undefined })}
+                value={filter.genre || "all"}
+                onValueChange={(value) => setFilter({ ...filter, genre: value === "all" ? undefined : value })}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="すべて" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">すべて</SelectItem>
+                  <SelectItem value="all">すべて</SelectItem>
                   {genres.map((genre) => (
                     <SelectItem key={genre} value={genre}>
                       {genre}
@@ -158,16 +158,16 @@ export default function Dashboard() {
             <div>
               <label className="text-sm font-medium">タイプ</label>
               <Select
-                value={filter.type || ""}
+                value={filter.type || "all"}
                 onValueChange={(value: any) =>
-                  setFilter({ ...filter, type: value || undefined })
+                  setFilter({ ...filter, type: value === "all" ? undefined : value })
                 }
               >
                 <SelectTrigger>
                   <SelectValue placeholder="すべて" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">すべて</SelectItem>
+                  <SelectItem value="all">すべて</SelectItem>
                   <SelectItem value="hotel">ホテル</SelectItem>
                   <SelectItem value="venue">店舗</SelectItem>
                 </SelectContent>
